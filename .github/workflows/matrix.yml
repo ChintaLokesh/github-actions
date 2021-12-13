@@ -2,10 +2,14 @@ name: 'Run command in multiple OS'
 on:
   push:
     branches:
-      - master
+      - "matrixWorkflow"
 jobs:
   run_command_multiple_os:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest,windows-latest,macos-latest]
+      fail-fast: false
+    runs-on: ${{matrix.os}}
     steps:
       - name: run_npm_version
         run: node -v
