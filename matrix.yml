@@ -1,0 +1,12 @@
+name: 'Run command in multiple OS'
+on:
+  push:
+    branches:
+      - master
+jobs:
+  run_command_multiple_os:
+    runs-on: ubuntu-latest
+    steps:
+      - name: run_npm_version
+        run: node -v
+
