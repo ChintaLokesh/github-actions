@@ -1,0 +1,24 @@
+name: run node with different versions using include and exclude
+on:
+  push:
+    branches:
+      - matrixWorkflow
+jobs:
+  run_matrix_with_exclude:
+    strategy:
+      matrix:
+        os: [windows-latest,ubuntu-latest,macos-latest]
+        node_version: [6, 8, 10]
+        exclude:
+          - os: [windows-latest]
+            node-version: [6]
+        
+      fail-fast: false
+    runs-on: ${{matrix.os}}
+    steps:
+      - name: checkout node
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{matrix.node_version}}
+        run: node -v 
+
