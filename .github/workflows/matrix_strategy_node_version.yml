@@ -8,9 +8,14 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest,windows-latest,macos-latest]
+        node_version: [6 8 10]
       fail-fast: false
-    runs-on: ${{amtrix.os}}
+    runs-on: ${{matrix.os}}
     steps:
       - name: run_npm_version
         run: node -v
-
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{matix.node_version}}
+      - name: run_npm_version
+        run: node -v
